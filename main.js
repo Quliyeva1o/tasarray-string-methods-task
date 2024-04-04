@@ -102,7 +102,7 @@ class User extends Human {
     }
 }
 
-let User1 = new User("Rena", "Quliyeva", 20, "female", "Azerbaycan", "Reiyna1o", "quliyevarena@gmail.com", true, true, "rena123", "i am a fornt end developer")
+// let User1 = new User("Rena", "Quliyeva", 20, "female", "Azerbaycan", "Reiyna1o", "quliyevarena@gmail.com", true, true, "rena123", "i am a fornt end developer")
 // console.log(User1.changePassword("rena123","salam123"));
 // console.log(User1.password);
 
@@ -132,3 +132,60 @@ let User1 = new User("Rena", "Quliyeva", 20, "female", "Azerbaycan", "Reiyna1o",
 
 // 5. DeleteUser() - parameter olaraq bir array ve bir username qebul edir ve daxil olunmush username-de user tapilarsa hemin User-i silir,
 // tapmazsa o zaman 'user not found' return edir.
+
+let User1 = new User("Rena", "Quliyeva", 20, "female", "Azerbaycan", "Reiyna1o", "quliyevarena@gmail.com", true, true, "rena123", "i am a fornt end developer")
+let User2 = new User("Nigar", "ahmedova", 19, "female", "Azerbaycan", "nigar27", "nigarah@gmail.com", true, false, "nigar123", "i am a back end developer")
+let User3 = new User("Aydan", "Kazimaova", 22, "female", "Russia", "aydann", "aydank@gmail.com", false, false, "rena123", "i am a fornt end developer")
+let User4 = new User("Tahir", "Sixlarov", 21, "male", "Azerbaycan", "tahir099", "tahirshiclaar@gmail.com", false, false, "tahir123", "i am a mobile developer")
+
+
+usersArr=[User1,User2,User3,User4]
+
+
+function sortUsersByUsername(users) {
+    return users.slice().sort((a, b) => {
+        const username1 = a.username.toLowerCase();
+        const username2 = b.username.toLowerCase();
+        if (username1 < username2) return -1;
+        if (username1 > username2) return 1;
+        return 0;
+    });
+}
+
+
+// let sortedUsers = sortUsersByUsername(usersArr);
+// console.log(sortedUsers);
+
+
+function filterByBirthYear(users, year) {
+    return users.filter(user => user.getBirthYear() > year);
+}
+
+// let filteredUsers = filterByBirthYear(usersArr, 2003);
+// console.log(filteredUsers);
+
+
+function login(users, username, password) {
+    const user = users.find(user => user.username === username);
+    
+    if (!user) {
+        console.log('user not found!');
+        return;
+    }
+
+    if (user.password !== password) {
+        console.log('incorrect username or password');
+        return;
+    }
+
+    if (user.isLogged) {
+        console.log('another user currently logged in');
+        return;
+    }
+
+    user.isLogged = true;
+    console.log('successfully logged in');
+}
+
+
+login(usersArr, 'Reiyna1o', 'rena123'); 
