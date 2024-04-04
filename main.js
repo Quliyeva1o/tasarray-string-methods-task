@@ -188,4 +188,49 @@ function login(users, username, password) {
 }
 
 
-login(usersArr, 'Reiyna1o', 'rena123'); 
+// login(usersArr, 'Reiyna1o', 'rena123'); 
+
+function logout(users, username) {
+    const user = users.find(user => user.username === username);
+    
+    if (!user) {
+        console.log('user not found');
+        return;
+    }
+
+    if (!user.isLogged) {
+        console.log('user did not log in to log out!');
+        return;
+    }
+
+    user.isLogged = false;
+    console.log('successfully logged out');
+}
+// login(usersArr, 'Reiyna1o', 'rena123'); 
+// logout(usersArr, 'Reiyna1o'); 
+
+
+
+function createUser(users, newUser) {
+    users.push(newUser);
+}
+
+let newUser = new User("Safura", "Quliyeva", 20, "female", "Azerbaijan", "safura123", "safush@example.com", false, false, "safus123", "I am a new manager");
+createUser(usersArr, newUser);
+// console.log(usersArr);
+
+
+function deleteUser(users, username) {
+    const index = users.findIndex(user => user.username === username);
+    
+    if (index !== -1) {
+        users.splice(index, 1);
+        console.log('User deleted successfully');
+    } else {
+        console.log('User not found');
+    }
+}
+
+
+console.log(deleteUser(usersArr, 'quliyeva'));
+// console.log(usersArr);
